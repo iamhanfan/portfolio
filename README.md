@@ -2,10 +2,10 @@
 ![Portfolio](readme/1.png)
 
 2. Skills Page
-![Portfolio](readme/1.png)
+![Portfolio](readme/2.png)
 
 3. Project Page
-![Portfolio](readme/1.png)
+![Portfolio](readme/3.png)
 
 4.Contact Page
-![Portfolio](readme/1.png)
+![Portfolio](readme/4.png)
