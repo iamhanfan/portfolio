@@ -1,35 +1,25 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Sanitize and validate the input
-    $name = htmlspecialchars($_POST['name']);
-    $email_address = filter_var($_POST['email_address'], FILTER_SANITIZE_EMAIL);
-    $message = htmlspecialchars($_POST['message']);
-    
-    // Validate email address
-    if (!filter_var($email_address, FILTER_VALIDATE_EMAIL)) {
-        echo "Invalid email address.";
+    $name = $_POST['name'];
+    $email = $_POST['email_address'];
+    $message = $_POST['message'];
+
+    // Validate form data
+    if (empty($name) || empty($email) || empty($message)) {
+        echo "All fields are required.";
         exit;
     }
 
-    // Set the recipient email address.
-    $to = 'hanfanhusain13@gmail.com'; // Replace with your Gmail address
+    // Send email
+    $to = "hanfanhusain13@gmail.com";
+    $subject = "New message from portfolio";
+    $body = "Name: $name\nEmail: $email\n\nMessage:\n$message";
+    $headers = "From: $email";
 
-    // Set the email subject.
-    $subject = 'Contact Form Submission';
-
-    // Build the email content.
-    $body = "Name: $name\n";
-    $body .= "Email: $email_address\n\n";
-    $body .= "Message:\n$message\n";
-
-    // Build the email headers.
-    $headers = "From: $email_address";
-
-    // Send the email.
     if (mail($to, $subject, $body, $headers)) {
         echo "Message sent successfully!";
     } else {
-        echo "Message delivery failed!";
+        echo "Failed to send message.";
     }
 } else {
     echo "Invalid request method.";
